@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 
-const ChatPage = ({ children }: { children: React.ReactNode }) => {
+const ChatPage = () => {
   return (
     <SidebarProvider>
       <AppSidebar />

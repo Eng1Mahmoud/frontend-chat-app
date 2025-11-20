@@ -26,7 +26,7 @@ export async function signupAction(
   }
   // send data to backend
   const response = await fetchApi<apiRespons, typeof values>({
-    endpoint: "/users/signup",
+    endpoint: "/auth/signup",
     method: "POST",
     body: values,
   });

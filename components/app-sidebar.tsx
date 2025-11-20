@@ -3,18 +3,17 @@ import {
   SidebarContent,
   SidebarHeader,
 } from "@/components/ui/sidebar"
+import UserList from "./UserList"
+import UserAvatar from "./UserAvatar/UserAvatar"
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader >
-        <div className="text-lg font-bold">Chat App</div>
-        <div className="bg-gray-500 h-px w-full rounded"/>
+       <UserAvatar/>
       </SidebarHeader>
       <SidebarContent>
-        <div>
-          user list here
-        </div>
+        <UserList/>
       </SidebarContent>
     </Sidebar>
   )

@@ -25,7 +25,7 @@ function VerifyAccountContent() {
       try {
         const url = `${
           process.env.NEXT_PUBLIC_API_URL
-        }/users/verify-email?token=${encodeURIComponent(token)}`;
+        }/auth/verify-email?token=${encodeURIComponent(token)}`;
         const res = await fetch(url, { method: "GET" });
         const data = await res.json().catch(() => ({}));
 

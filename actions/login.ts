@@ -28,7 +28,7 @@ export async function loginAction(
   }
   // send data to backend
   const response = await fetchApi<loginResponse, typeof values>({
-    endpoint: "/users/login",
+    endpoint: "/auth/login",
     method: "POST",
     body: values,
   });
