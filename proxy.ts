@@ -4,20 +4,17 @@ import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 
 export async function proxy(request: NextRequest) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
 
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token");
+  if (!token || token.value === "") {
+    const loginUrl = new URL("/login", request.url);
+    return NextResponse.redirect(loginUrl);
+  }
 
-    if (!token || token.value === "") {
-        const loginUrl = new URL("/login", request.url);
-        return NextResponse.redirect(loginUrl);
-    }
-    return NextResponse.next();
-
-
-
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: '/chat',
-}
+  matcher: "/chat",
+};

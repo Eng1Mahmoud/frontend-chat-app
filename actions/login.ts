@@ -47,6 +47,6 @@ export async function loginAction(
       httpOnly: true,
       maxAge: maxAge,
     });
-    redirect("/");
+    redirect("/chat");
   }
 }

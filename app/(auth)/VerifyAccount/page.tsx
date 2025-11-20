@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 type Status = "idle" | "verifying" | "success" | "error";
 
-export default function VerifyAccountPage() {
+function VerifyAccountContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = useMemo(() => searchParams.get("token"), [searchParams]);
@@ -105,5 +105,31 @@ export default function VerifyAccountPage() {
         )}
       </div>
     </div>
+  );
+}
+
+function LoadingFallback() {
+  return (
+    <div>
+      <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+        Verify your account
+      </h2>
+      <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">
+        Loading verification...
+      </p>
+      <div className="mt-6">
+        <div className="rounded-md border border-indigo-500/20 bg-indigo-500/10 px-3 py-2 text-sm text-indigo-700 dark:text-indigo-300">
+          Preparing verification...
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function VerifyAccountPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <VerifyAccountContent />
+    </Suspense>
   );
 }
