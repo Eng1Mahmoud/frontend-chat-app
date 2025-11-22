@@ -40,7 +40,7 @@ export async function loginAction(
   } else {
     // Set cookie
     const cookieStore = await cookies();
-    const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
+    const maxAge =  24 * 60 * 60; // 1 day in seconds
     cookieStore.set({
       name: "token",
       value: response.data!.token,

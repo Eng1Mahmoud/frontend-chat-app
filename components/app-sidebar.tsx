@@ -3,7 +3,7 @@ import {
   SidebarContent,
   SidebarHeader,
 } from "@/components/ui/sidebar"
-import UserList from "./UserList"
+import UserList from "./User-list/UserList"
 import UserAvatar from "./UserAvatar/UserAvatar"
 
 export function AppSidebar() {
