@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { socket } from "@/socket";
+import { useChat } from "@/context/ChatProvider";
 
 const SendMessage = () => {
   const [message, setMessage] = useState("");
@@ -12,9 +14,14 @@ const SendMessage = () => {
     setIsTyping(value.length > 0);
   };
 
+  const { selectedUserForChat } = useChat() || {};
+
   const handleSendMessage = () => {
-    if (message.trim()) {
-      console.log("Sending message:", message);
+    if (message.trim() && selectedUserForChat) {
+      socket.emit("send_message", {
+        receiverId: selectedUserForChat._id,
+        text: message,
+      });
       setMessage("");
       setIsTyping(false);
     }
@@ -42,7 +49,7 @@ const SendMessage = () => {
                 ref={textareaRef}
                 value={message}
                 onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Type your message..."
                 className="w-full bg-transparent border-none outline-none resize-none text-foreground placeholder-muted-foreground text-base leading-6 max-h-[120px] overflow-y-auto scrollbar-thin scrollbar-thumb-muted/20 scrollbar-track-transparent"
                 rows={1}

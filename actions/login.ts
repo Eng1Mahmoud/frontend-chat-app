@@ -12,7 +12,6 @@ export async function loginAction(
 ): Promise<FormState> {
   const values = formDataToObject(formData);
   const parsed = loginSchema.safeParse(values);
-  console.log("parsed", parsed);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};
     for (const issue of parsed.error.issues) {

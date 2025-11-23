@@ -6,7 +6,7 @@ export interface ApiResponse<T> {
 export interface IFetch<I> {
   endpoint: string;
   method: string;
-  body?: I;
+  body?: I | undefined | null;
   tags?: string[];
   params?: {
     [key: string]: string;
@@ -14,12 +14,21 @@ export interface IFetch<I> {
 }
 
 export interface Iuser {
- _id: string;
+  _id: string;
   username: string;
   email: string;
   online: boolean;
   isVerified: boolean;
   createdAt: string;
   updatedAt: string;
-  
+
+}
+
+export interface IMessage {
+  _id: string;
+  sender: string;
+  receiver: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
 }

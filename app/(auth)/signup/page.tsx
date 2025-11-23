@@ -9,7 +9,6 @@ export default function SignUpPage() {
     signupAction,
     initialState
   );
-  console.log("pendding", isPending);
 
   return (
     <div>

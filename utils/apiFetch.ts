@@ -5,15 +5,15 @@ export async function fetchApi<R, I>({
   method,
   body,
   params,
-}: IFetch<I>): Promise<ApiResponse<R>> {
+}: IFetch<I | undefined | null>): Promise<ApiResponse<R>> {
   try {
     const token = (await cookies()).get("token")?.value;
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
     const apiUrl = `${baseUrl}${endpoint}`;
     if (params) {
-       // params is an object key-value pairs
-        const queryString = new URLSearchParams(params).toString();
-        apiUrl.concat(`?${queryString}`);
+      // params is an object key-value pairs
+      const queryString = new URLSearchParams(params).toString();
+      apiUrl.concat(`?${queryString}`);
     }
     const res = await fetch(`${apiUrl}`, {
       method: method,
@@ -22,7 +22,7 @@ export async function fetchApi<R, I>({
         ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(body),
-      
+
     });
     if (!res.ok) {
       try {

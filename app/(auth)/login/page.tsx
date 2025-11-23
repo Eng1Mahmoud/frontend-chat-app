@@ -6,7 +6,6 @@ import type { FormState } from "@/types/actions";
 const initialState: FormState = { success: false };
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
-   console.log(state);
   return (
     <div>
       <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
