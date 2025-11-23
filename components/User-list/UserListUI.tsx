@@ -1,6 +1,7 @@
 "use client";
 import { Iuser } from "@/types/apiFetch";
 import { useChat } from "@/context/ChatProvider";
+import { BadgeCheck } from "lucide-react";
 const UserListUI = ({ users }: { users: Iuser[] }) => {
   const { changedSelectedUserForChat, selectedUserForChat } = useChat() || {};
   // Function to get initials from username
@@ -44,9 +45,8 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
         {users.map((user, index) => (
           <div
             key={user._id}
-            className={`flex items-center p-4 hover:bg-accent/50 transition-colors cursor-pointer ${
-              isActiveUser(user) ? "bg-accent" : ""
-            }`}
+            className={`flex items-center p-4 hover:bg-accent/50 transition-colors cursor-pointer ${isActiveUser(user) ? "bg-accent" : ""
+              }`}
             onClick={() => handleSelectUser(user)}
           >
             {/* Avatar */}
@@ -57,10 +57,6 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
               >
                 {getInitials(user.username)}
               </div>
-              {/* Online Status */}
-              {user.online && (
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background"></div>
-              )}
             </div>
 
             {/* User Info */}
@@ -70,25 +66,12 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
                   {user.username}
                 </h3>
                 {user.isVerified && (
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <BadgeCheck className="w-4 h-4 text-blue-500" />
                 )}
               </div>
               <p className="text-sm text-muted-foreground truncate">
                 {user.email}
               </p>
-            </div>
-
-            {/* Status */}
-            <div className="ml-3 text-right">
-              <span
-                className={`text-xs px-2 py-1 rounded ${
-                  user.online
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
-                }`}
-              >
-                {user.online ? "Online" : "Offline"}
-              </span>
             </div>
           </div>
         ))}

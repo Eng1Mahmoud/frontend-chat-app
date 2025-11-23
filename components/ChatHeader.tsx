@@ -1,5 +1,6 @@
 "use client";
 import { useChat } from "@/context/ChatProvider";
+import { BadgeCheck } from "lucide-react";
 
 const ChatHeader = () => {
   const { selectedUserForChat } = useChat() || {};
@@ -14,16 +15,12 @@ const ChatHeader = () => {
       <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-accent/5 opacity-50"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]"></div>
       <div className="flex items-center space-x-4 relative z-10">
-        {/* Avatar with online status */}
+        {/* Avatar  */}
         <div className="relative">
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm ring-2 ring-background shadow-sm">
             {getInitials(selectedUserForChat?.username as string)}
           </div>
 
-          {/* Online Status Indicator */}
-          {selectedUserForChat?.online && (
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-background shadow-sm"></div>
-          )}
         </div>
 
         {/* User Info */}
@@ -33,27 +30,11 @@ const ChatHeader = () => {
               {selectedUserForChat?.username}
             </h2>
             {selectedUserForChat?.isVerified && (
-              <div
-                className="w-2 h-2 bg-blue-500 rounded-full shadow-sm"
-                title="Verified"
-              ></div>
+              <BadgeCheck className="w-4 h-4 text-blue-500" />
             )}
           </div>
           <div className="flex items-center space-x-1 mt-1">
-            <div
-              className={`w-2 h-2 rounded-full ${
-                selectedUserForChat?.online ? "bg-green-500" : "bg-gray-400"
-              }`}
-            ></div>
-            <span
-              className={`text-sm font-medium ${
-                selectedUserForChat?.online
-                  ? "text-green-600 dark:text-green-400"
-                  : "text-muted-foreground"
-              }`}
-            >
-              {selectedUserForChat?.online ? "Online" : "Offline"}
-            </span>
+
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useChat } from "@/context/ChatProvider";
 import { Iuser } from "@/types/apiFetch";
+import { BadgeCheck } from "lucide-react";
 
 export const AvatarUI = ({ user }: { user: Iuser }) => {
   const { changedLogedinUser } = useChat() || {};
@@ -26,14 +27,6 @@ export const AvatarUI = ({ user }: { user: Iuser }) => {
         >
           {getInitials(user?.username)}
         </div>
-
-        {/* Online Status Indicator */}
-        {user?.online && (
-          <div
-            className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full 
-                                   border-2 border-white shadow-sm animate-pulse"
-          ></div>
-        )}
       </div>
 
       {/* User Info */}
@@ -43,19 +36,8 @@ export const AvatarUI = ({ user }: { user: Iuser }) => {
             {user?.username}
           </h3>
           {user?.isVerified && (
-            <div className="w-2 h-2 bg-blue-500 rounded-full shadow-sm"></div>
+            <BadgeCheck className="w-4 h-4 text-blue-500" />
           )}
-        </div>
-        <div className="flex items-center space-x-2 mt-0.5">
-          <span
-            className={`text-xs font-medium ${
-              user?.online
-                ? "text-green-600 dark:text-green-400"
-                : "text-muted-foreground"
-            }`}
-          >
-            {user?.online ? "Online" : "Offline"}
-          </span>
         </div>
       </div>
     </div>
