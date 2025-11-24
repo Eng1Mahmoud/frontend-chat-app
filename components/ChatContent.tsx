@@ -10,7 +10,6 @@ import { IMessage } from "@/types/apiFetch";
 
 const ChatContent = () => {
   const { selectedUserForChat, logedinUser } = useChat() || {};
-  const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const ChatContent = () => {
     // Fetch message history
     const fetchMessages = async () => {
       try {
-        const res = await getMessagesAction(selectedUserForChat._id);
+        const res = await getMessagesAction(selectedUserForChat?._id);
         if (res.success && res.data) {
           setMessages(res.data);
         }
@@ -29,39 +28,20 @@ const ChatContent = () => {
 
     fetchMessages();
 
-    // connect to socket 
-    socket.connect();
-
-    const onConnect = () => {
-      setIsConnected(true);
-      console.log("Connected to socket");
-    };
-
-    const onDisconnect = () => {
-      setIsConnected(false);
-      console.log("Disconnected from socket");
-    };
-
-
     const onReceiveMessage = (message: IMessage) => {
       // 1. Check if the message is relevant to the OPEN chat this to prevent adding messages that come from other person while i chat with another person
-      const isFromSelectedUser = message.sender === selectedUserForChat._id;
-      const isToSelectedUser = message.receiver === selectedUserForChat._id;
+      const isFromSelectedUser = message.sender === selectedUserForChat?._id;
+      const isToSelectedUser = message.receiver === selectedUserForChat?._id;
 
       if (isFromSelectedUser || isToSelectedUser) {
         setMessages((prev) => [...prev, message]);
       }
     };
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
     socket.on("receive_message", onReceiveMessage);
 
     return () => {
       // remove event listeners
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
       socket.off("receive_message", onReceiveMessage);
-      socket.disconnect();
       setMessages([]); // Clear messages when switching users or unmounting
     };
   }, [selectedUserForChat, logedinUser]);

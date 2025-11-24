@@ -4,16 +4,16 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import UserList from "./User-list/UserList"
-import UserAvatar from "./UserAvatar/UserAvatar"
+import LogdinUser from "./LogdinUser/LogdinUser"
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader >
-       <UserAvatar/>
+        <LogdinUser />
       </SidebarHeader>
       <SidebarContent>
-        <UserList/>
+        <UserList />
       </SidebarContent>
     </Sidebar>
   )

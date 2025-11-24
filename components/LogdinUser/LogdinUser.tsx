@@ -1,15 +1,15 @@
 import { fetchApi } from "@/utils/apiFetch";
-import { AvatarUI } from "./AvataUI";
+import { LogdinUserUI } from "./LogdinUserUI";
 import { Iuser } from "@/types/apiFetch";
 
-const UserAvatar = async () => {
+const LogdinUser = async () => {
   const res = (await fetchApi({
     endpoint: "/users/profile",
     method: "GET",
   })) as { data: { user: Iuser } };
   const user = res.data?.user;
 
-  return <AvatarUI user={user} />;
+  return <LogdinUserUI user={user} />;
 };
 
-export default UserAvatar;
+export default LogdinUser;

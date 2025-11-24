@@ -1,36 +1,20 @@
 "use client";
 import { Iuser } from "@/types/apiFetch";
 import { useChat } from "@/context/ChatProvider";
+import { VerifiedIcon } from "lucide-react";
+import { isUserOnline } from "@/utils/isUserOnline";
+import { Avatar } from "../Avatar";
 const UserListUI = ({ users }: { users: Iuser[] }) => {
-  const { changedSelectedUserForChat, selectedUserForChat } = useChat() || {};
-  // Function to get initials from username
-  const getInitials = (username: string) => {
-    return username?.slice(0, 2).toUpperCase();
-  };
-
-  // Function to get a color based on index
-  const getAvatarColor = (index: number) => {
-    const colors = [
-      "bg-blue-500",
-      "bg-green-500",
-      "bg-purple-500",
-      "bg-yellow-500",
-      "bg-red-500",
-      "bg-indigo-500",
-      "bg-pink-500",
-      "bg-orange-500",
-    ];
-    return colors[index % colors.length];
-  };
-
+  const { changedSelectedUserForChat, selectedUserForChat, onlineUsers = new Set<string>() } = useChat() || {};
   // handle select user for chat >>  store in global state (to be implemented)
   const handleSelectUser = (user: Iuser) => {
     changedSelectedUserForChat?.(user);
   };
   // active user style
   const isActiveUser = (user: Iuser) => {
-    return selectedUserForChat?._id === user._id;
+    return selectedUserForChat?._id === user?._id;
   };
+
   return (
     <div className="w-full max-w-md mx-auto bg-background">
       {/* Header */}
@@ -43,26 +27,12 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
       <div className="divide-y divide-border">
         {users.map((user, index) => (
           <div
-            key={user._id}
-            className={`flex items-center p-4 hover:bg-accent/50 transition-colors cursor-pointer ${
-              isActiveUser(user) ? "bg-accent" : ""
-            }`}
+            key={user?._id}
+            className={`flex items-center gap-3 p-4 hover:bg-accent/50 transition-colors cursor-pointer ${isActiveUser(user) ? "bg-accent" : ""
+              }`}
             onClick={() => handleSelectUser(user)}
           >
-            {/* Avatar */}
-            <div className="relative mr-3">
-              <div
-                className={`w-12 h-12 rounded-full ${getAvatarColor(index)} 
-                                           flex items-center justify-center text-white font-medium`}
-              >
-                {getInitials(user.username)}
-              </div>
-              {/* Online Status */}
-              {user.online && (
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background"></div>
-              )}
-            </div>
-
+            <Avatar user={user} onlineUsers={onlineUsers} />
             {/* User Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center space-x-2">
@@ -70,7 +40,7 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
                   {user.username}
                 </h3>
                 {user.isVerified && (
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <VerifiedIcon className="w-4 h-4 text-blue-500" />
                 )}
               </div>
               <p className="text-sm text-muted-foreground truncate">
@@ -81,13 +51,12 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
             {/* Status */}
             <div className="ml-3 text-right">
               <span
-                className={`text-xs px-2 py-1 rounded ${
-                  user.online
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
-                }`}
+                className={`text-xs px-2 py-1 rounded ${isUserOnline(user?._id, onlineUsers)
+                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                  : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  }`}
               >
-                {user.online ? "Online" : "Offline"}
+                {isUserOnline(user?._id, onlineUsers) ? "Online" : "Offline"}
               </span>
             </div>
           </div>
