@@ -33,7 +33,8 @@ const ChatHeader = () => {
           <div className="flex items-center space-x-1 mt-1">
 
             <span
-              className={`text-sm font-medium ${selectedUserForChat?.online
+              className={`text-sm font-medium ${
+                isUserOnline(selectedUserForChat?._id as string, onlineUsers)
                 ? "text-green-600 dark:text-green-400"
                 : "text-muted-foreground"
                 }`}
