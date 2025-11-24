@@ -21,7 +21,7 @@ const ChatProvider = ({ children }: ChatProviderProps) => {
     null
   );
   const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
-
+console.log("onlineUsers",onlineUsers);
   // change logedinUser and selectedChat types as per your requirement
   const changedLogedinUser = (user: Iuser | null) => {
     setLogedinUser(user);
