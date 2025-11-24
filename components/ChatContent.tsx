@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChatWelcom from "./ChatWelcom";
 import ChatHeader from "./ChatHeader";
 import { useChat } from "@/context/ChatProvider";
@@ -11,6 +11,7 @@ import { IMessage } from "@/types/apiFetch";
 const ChatContent = () => {
   const { selectedUserForChat, logedinUser } = useChat() || {};
   const [messages, setMessages] = useState<any[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!selectedUserForChat) return;
@@ -46,6 +47,11 @@ const ChatContent = () => {
     };
   }, [selectedUserForChat, logedinUser]);
 
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className="h-screen flex flex-col">
       {selectedUserForChat ? (
@@ -54,7 +60,7 @@ const ChatContent = () => {
           <ChatHeader />
 
           {/* Chat messages area - flex-1 to take remaining space */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 [&::-webkit-scrollbar]:[width:0px] ">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -74,6 +80,7 @@ const ChatContent = () => {
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Send message input - fixed at bottom */}
