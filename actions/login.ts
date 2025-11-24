@@ -43,11 +43,8 @@ export async function loginAction(
     cookieStore.set({
       name: "token",
       value: response.data!.token,
-      httpOnly: true,
+      httpOnly: false,
       maxAge: maxAge,
-      sameSite: 'none',
-      secure: true,
-      path: '/',
     });
     redirect("/chat");
   }

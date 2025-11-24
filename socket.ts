@@ -1,6 +1,6 @@
 "use client";
 import { io } from "socket.io-client";
-
+import { getCookie } from "cookies-next";
 
 export const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
   withCredentials: true,
@@ -12,5 +12,13 @@ export const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
   reconnectionAttempts: 5,
   reconnectionDelay: 1000,
   autoConnect: false,
+  auth: (cb) => {
+    const token = getCookie('token');
+    if (token) {
+      cb({ token });
+    } else {
+      cb({});
+    }
+  }
 });
 
