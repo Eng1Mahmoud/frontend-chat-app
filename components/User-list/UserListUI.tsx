@@ -1,4 +1,6 @@
 "use client";
+import { useSidebar } from "@/components/ui/sidebar";
+
 import { Iuser } from "@/types/apiFetch";
 import { useChat } from "@/context/ChatProvider";
 import { VerifiedIcon } from "lucide-react";
@@ -7,9 +9,13 @@ import { Avatar } from "../Avatar";
 
 const UserListUI = ({ users }: { users: Iuser[] }) => {
   const { changedSelectedUserForChat, selectedUserForChat, onlineUsers = new Set<string>() } = useChat() || {};
+  const { setOpen, setOpenMobile } = useSidebar();
   // handle select user for chat >>  store in global state (to be implemented)
   const handleSelectUser = (user: Iuser) => {
     changedSelectedUserForChat?.(user);
+    // Close sidebar for both desktop and mobile
+    setOpen(false);
+    setOpenMobile && setOpenMobile(false);
   };
   // active user style
   const isActiveUser = (user: Iuser) => {
