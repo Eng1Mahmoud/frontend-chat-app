@@ -19,7 +19,7 @@ const SendMessage = () => {
   const handleSendMessage = () => {
     if (message.trim() && selectedUserForChat) {
       socket.emit("send_message", {
-        receiverId: selectedUserForChat._id,
+        receiverId: selectedUserForChat?._id,
         text: message,
       });
       setMessage("");
@@ -61,11 +61,10 @@ const SendMessage = () => {
             <button
               onClick={handleSendMessage}
               disabled={!message.trim()}
-              className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${
-                message.trim()
+              className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${message.trim()
                   ? "bg-linear-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-lg shadow-primary/20"
                   : "bg-muted/30 text-muted-foreground cursor-not-allowed"
-              }`}
+                }`}
             >
               {message.trim() ? (
                 <svg
