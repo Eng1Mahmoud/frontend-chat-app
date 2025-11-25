@@ -85,7 +85,7 @@ const ChatContent = () => {
             onScroll={handleScroll}
 
           >
-            <div className="w-full h-[100vh] bg-black opacity-20 absolute top-0 left-0 right-0 bottom-0 z-[-1]" />
+            <div className="w-full h-full bg-black opacity-20 fixed top-0 left-0 right-0 bottom-0 z-[-1] pointer-events-none" />
             {messages.map((msg, index) => (
               <div
                 key={index}
