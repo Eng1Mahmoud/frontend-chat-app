@@ -7,7 +7,11 @@ import { Iuser } from "@/types/apiFetch";
 import { formatLastSeen } from "@/utils/formatLastSeen";
 import { useSidebar } from "@/components/ui/sidebar";
 
-const ChatHeader = () => {
+interface ChatHeaderProps {
+  isOtherUserTyping: boolean;
+}
+
+const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
   const { selectedUserForChat, onlineUsers = new Set<string>() } = useChat() || {};
   const { toggleSidebar } = useSidebar();
 
@@ -35,14 +39,25 @@ const ChatHeader = () => {
             )}
           </div>
           <div className="flex items-center space-x-1">
-            <span
-              className={`text-sm ${isUserOnline(selectedUserForChat?._id as string, onlineUsers)
-                ? "text-[#25D366]"
-                : "text-gray-500 dark:text-gray-400"
-                }`}
-            >
-              {isUserOnline(selectedUserForChat?._id as string, onlineUsers) ? "Online" : formatLastSeen(selectedUserForChat?.lastSeen as string)}
-            </span>
+            {isOtherUserTyping ? (
+              <div className="flex items-center space-x-1">
+                <span className="text-sm text-[#25D366]">typing</span>
+                <div className="flex space-x-1">
+                  <span className="w-1 h-1 bg-[#25D366] rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                  <span className="w-1 h-1 bg-[#25D366] rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                  <span className="w-1 h-1 bg-[#25D366] rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></span>
+                </div>
+              </div>
+            ) : (
+              <span
+                className={`text-sm ${isUserOnline(selectedUserForChat?._id as string, onlineUsers)
+                  ? "text-[#25D366]"
+                  : "text-gray-500 dark:text-gray-400"
+                  }`}
+              >
+                {isUserOnline(selectedUserForChat?._id as string, onlineUsers) ? "Online" : formatLastSeen(selectedUserForChat?.lastSeen as string)}
+              </span>
+            )}
           </div>
         </div>
       </div>
