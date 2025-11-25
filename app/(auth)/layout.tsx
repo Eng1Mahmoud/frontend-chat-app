@@ -10,7 +10,7 @@ export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="min-h-dvh grid md:grid-cols-2 bg-zinc-50 dark:bg-zinc-950">
+    <div className="min-h-dvh grid md:grid-cols-2 bg-zinc-50 dark:bg-zinc-950 w-full">
       {/* Left brand panel */}
       <div className="relative hidden md:flex items-center justify-center overflow-hidden p-8">
         <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 opacity-20" />
