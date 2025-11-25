@@ -12,6 +12,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 const ChatContent = () => {
   const { selectedUserForChat, logedinUser } = useChat() || {};
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isOtherUserTyping, setIsOtherUserTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [showScrollToBottomButton, setShowScrollToBottomButton] = useState(false);
@@ -38,11 +39,31 @@ const ChatContent = () => {
         setMessages((prev) => [...prev, message]);
       }
     };
+
+    const onUserTyping = (data: { userId: string }) => {
+      // Only show typing indicator if the typing user is the selected user
+      if (data.userId === selectedUserForChat?._id) {
+        setIsOtherUserTyping(true);
+      }
+    };
+
+    const onUserStoppedTyping = (data: { userId: string }) => {
+      // Only hide typing indicator if the user who stopped is the selected user
+      if (data.userId === selectedUserForChat?._id) {
+        setIsOtherUserTyping(false);
+      }
+    };
+
     socket.on("receive_message", onReceiveMessage);
+    socket.on("user_typing", onUserTyping);
+    socket.on("user_stopped_typing", onUserStoppedTyping);
 
     return () => {
       socket.off("receive_message", onReceiveMessage);
+      socket.off("user_typing", onUserTyping);
+      socket.off("user_stopped_typing", onUserStoppedTyping);
       setMessages([]);
+      setIsOtherUserTyping(false);
     };
   }, [selectedUserForChat, logedinUser]);
 
@@ -78,7 +99,7 @@ const ChatContent = () => {
     <div className="h-screen flex flex-col">
       {selectedUserForChat ? (
         <div className="flex-1 flex flex-col h-full">
-          <ChatHeader />
+          <ChatHeader isOtherUserTyping={isOtherUserTyping} />
           <div
             ref={messagesContainerRef}
             className="flex-1 overflow-y-auto p-4 space-y-4 [&::-webkit-scrollbar]:[width:0px] relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-no-repeat"
