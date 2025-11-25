@@ -9,7 +9,6 @@ const ChatPage = () => {
       <AppSidebar />
       <main className="flex-1 flex flex-col h-screen">
         <SocketController />
-        <SidebarTrigger />
         {/* Chat content goes here */}
         <ChatContent />
       </main>

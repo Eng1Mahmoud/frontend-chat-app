@@ -35,14 +35,11 @@ const SendMessage = () => {
   };
 
   return (
-    <div className="bg-background/95 backdrop-blur-md border-t border-border/30 p-4 sticky bottom-0 z-10">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-t from-primary/3 via-transparent to-transparent pointer-events-none"></div>
-
+    <div className="bg-[#F0F2F5] dark:bg-[#202C33] border-t border-gray-200 dark:border-gray-800 p-3 sticky bottom-0 z-10">
       <div className="relative max-w-4xl mx-auto">
         {/* Main input container */}
-        <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30">
-          <div className="flex items-end space-x-3 p-4">
+        <div className="relative bg-white dark:bg-[#2A3942] rounded-lg shadow-sm">
+          <div className="flex items-end space-x-2 p-2">
             {/* Message input */}
             <div className="flex-1 relative">
               <textarea
@@ -50,10 +47,10 @@ const SendMessage = () => {
                 value={message}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
-                placeholder="Type your message..."
-                className="w-full bg-transparent border-none outline-none resize-none text-foreground placeholder-muted-foreground text-base leading-6 max-h-[120px] overflow-y-auto scrollbar-thin scrollbar-thumb-muted/20 scrollbar-track-transparent"
+                placeholder="Type a message"
+                className="w-full bg-transparent border-none outline-none resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm leading-5 max-h-[120px] overflow-y-auto"
                 rows={1}
-                style={{ minHeight: "24px" }}
+                style={{ minHeight: "20px" }}
               />
             </div>
 
@@ -61,9 +58,9 @@ const SendMessage = () => {
             <button
               onClick={handleSendMessage}
               disabled={!message.trim()}
-              className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${message.trim()
-                  ? "bg-linear-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-muted/30 text-muted-foreground cursor-not-allowed"
+              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${message.trim()
+                ? "bg-[#25D366] hover:bg-[#20BD5A] text-white"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
                 }`}
             >
               {message.trim() ? (

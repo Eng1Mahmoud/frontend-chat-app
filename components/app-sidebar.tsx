@@ -4,13 +4,13 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import UserList from "./User-list/UserList"
-import LogdinUser from "./LogdinUser/LogdinUser"
+import { LogedinUserUI } from "@/components/LogedinUserUI"
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader >
-        <LogdinUser />
+        <LogedinUserUI />
       </SidebarHeader>
       <SidebarContent>
         <UserList />

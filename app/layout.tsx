@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChatProvider from "@/context/ChatProvider";
 import { SidebarProvider } from "@/components/ui/sidebar";
-
+import GetLogdinUser from "@/components/GetLogdinUser";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,6 +32,7 @@ export default function RootLayout({
         <SidebarProvider>
           <ChatProvider>
             {children}
+            <GetLogdinUser />
           </ChatProvider>
         </SidebarProvider>
       </body>

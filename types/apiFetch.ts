@@ -18,6 +18,8 @@ export interface Iuser {
   username: string;
   email: string;
   isVerified: boolean;
+  online: boolean;
+  lastSeen: string;
   createdAt: string;
   updatedAt: string;
 
