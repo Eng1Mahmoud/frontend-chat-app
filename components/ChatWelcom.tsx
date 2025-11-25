@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+import { Button } from "./ui/button";
+import { useSidebar } from "./ui/sidebar";
 import { MessageSquareText, Globe, Users } from "lucide-react";
 
 const ChatWelcom = () => {
+  const { setOpenMobile } = useSidebar() || {};
   return (
     <div className="flex flex-col items-center justify-center h-screen  relative overflow-hidden bg-gray-200 " >
       {/* Main content */}
@@ -39,11 +42,24 @@ const ChatWelcom = () => {
         </div>
 
         {/* Call to action */}
-        <div className="mt-8 p-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-200 dark:border-gray-700">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            👈 Select a user from the sidebar to start chatting
-          </p>
+        <div className="mt-8">
+          {/* Mobile: Show button to open sidebar */}
+          <Button
+            onClick={() => setOpenMobile?.(true)}
+            className="md:hidden w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-medium py-6 rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl"
+          >
+            <Users className="w-5 h-5 mr-2" />
+            Open User List
+          </Button>
+
+          {/* Desktop: Show instruction text */}
+          <div className="hidden md:block p-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              👈 Select a user from the sidebar to start chatting
+            </p>
+          </div>
         </div>
+
 
         {/* Decorative dots */}
         <div className="flex justify-center space-x-2 mt-6">
