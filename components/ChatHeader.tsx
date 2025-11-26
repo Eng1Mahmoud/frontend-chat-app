@@ -20,7 +20,7 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
         {/* Sidebar toggle button */}
         <button
           onClick={toggleSidebar}
-          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors md:block hidden"
+          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors "
           aria-label="Toggle sidebar"
         >
           <Menu className="w-5 h-5 text-gray-700 dark:text-gray-300" />
