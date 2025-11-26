@@ -1,4 +1,5 @@
 import type { ApiResponse, IFetch } from "@/types/apiFetch";
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 export async function fetchApi<R, I>({
   endpoint,
@@ -27,6 +28,13 @@ export async function fetchApi<R, I>({
     if (!res.ok) {
       try {
         const errorData = await res.json();
+        // check if status code is 401 or 403 redirect to login page and remove token from cookies
+
+        if (res.status === 401 || res.status === 403) {
+          (await cookies()).delete("token");
+
+          redirect("/login");
+        }
         return {
           success: false,
           message:
