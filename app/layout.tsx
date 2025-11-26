@@ -29,12 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <ChatProvider>
+        <ChatProvider>
+          <SidebarProvider>
             {children}
             <GetLogdinUser />
-          </ChatProvider>
-        </SidebarProvider>
+          </SidebarProvider>
+        </ChatProvider>
       </body>
     </html>
   );

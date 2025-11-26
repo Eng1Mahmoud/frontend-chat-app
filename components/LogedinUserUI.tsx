@@ -1,14 +1,19 @@
 "use client";
-import { useEffect } from "react";
 import { useChat } from "@/context/ChatProvider";
 import { Iuser } from "@/types/apiFetch";
 import { isUserOnline } from "@/utils/isUserOnline";
-import { VerifiedIcon } from "lucide-react";
+import { logoutAction } from "@/actions/logout";
+import { VerifiedIcon, LogOut } from "lucide-react";
 import { Avatar } from "./Avatar";
+import { Button } from "./ui/button";
 
 export const LogedinUserUI = () => {
-  const { logedinUser, onlineUsers = new Set<string>() } = useChat() || {};
-
+  const { logedinUser, changedLogedinUser, onlineUsers = new Set<string>() } = useChat() || {};
+// handle logout
+const handleLogout = async () => {
+    await logoutAction();
+    changedLogedinUser?.(null);
+}
   return (
     <div
       className="flex items-center space-x-3 p-3 rounded-xl bg-card border border-border/50 
@@ -37,6 +42,14 @@ export const LogedinUserUI = () => {
           </span>
         </div>
       </div>
+      <Button
+        onClick={handleLogout}
+        variant="outline" size="icon" aria-label="Logout"
+        title="Logout"
+        className="cursor-pointer "
+      >
+        <LogOut className="w-5 h-5" color="red"/>
+      </Button>
     </div>
   );
 };
