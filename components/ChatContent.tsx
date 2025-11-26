@@ -9,6 +9,7 @@ import { getMessagesAction } from "@/actions/messageActions";
 import { IMessage } from "@/types/apiFetch";
 import { ChevronDown, Check, CheckCheck, UserRoundSearch } from "lucide-react";
 import FindFriends from "./chat-page/FindFriends";
+import MessagesList from "./chat-page/MessagesList";
 const ChatContent = () => {
   const { selectedUserForChat, logedinUser } = useChat() || {};
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -142,39 +143,11 @@ const ChatContent = () => {
               className="flex-1 overflow-y-auto p-4 space-y-6 relative px-4 md:px-12 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent "
               onScroll={handleScroll}
             >
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`flex ${msg.sender === logedinUser?._id ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[75%] md:max-w-[60%] p-4 rounded-4xl shadow-sm relative group transition-all duration-200 ${msg.sender === logedinUser?._id
-                      ? "bg-linear-to-br from-indigo-600 to-purple-600 text-white  rounded-tr-none"
-                      : "bg-slate-800/80 backdrop-blur-sm border border-white/5 text-gray-100  rounded-tl-none"
-                      }`}
-                  >
-                    <p className="text-[15px] leading-relaxed mb-1.5">{msg.text}</p>
-                    <div className={`flex items-center gap-1.5 text-[11px] ${msg.sender === logedinUser?._id ? "justify-end text-indigo-100/70" : "justify-start text-slate-400"
-                      }`}>
-                      <span>
-                        {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </span>
-                      {msg.sender === logedinUser?._id && (
-                        <span className="ml-0.5">
-                          {msg.status === "read" ? (
-                            <CheckCheck className="w-3.5 h-3.5 text-blue-200" />
-                          ) : msg.status === "delivered" ? (
-                            <CheckCheck className="w-3.5 h-3.5 text-indigo-200/70" />
-                          ) : (
-                            <Check className="w-3.5 h-3.5 text-indigo-200/70" />
-                          )}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <div ref={messagesEndRef} />
+              <MessagesList
+                messages={messages}
+                messagesEndRef={messagesEndRef}
+                isTyping={isOtherUserTyping}
+              />
             </div>
             {/* Sidebar toggle button - Find Friends */}
             <FindFriends />

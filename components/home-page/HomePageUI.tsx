@@ -9,6 +9,7 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function HomePageUI() {
   const { logedinUser } = useChat() || {};
@@ -25,9 +26,9 @@ export default function HomePageUI() {
       {/* Navbar */}
       <nav className="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-linear-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <MessageCircle className="w-6 h-6 text-white" />
-          </div>
+
+          <Image src="/icon.png" alt="logo" width={50} height={50} className="cursor-pointer" />
+
         </div>
         <div className="flex items-center gap-4">
           {!logedinUser && (
@@ -49,8 +50,8 @@ export default function HomePageUI() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 lg:pt-24 lg:pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-24 lg:pt-10 lg:pb-32">
+        <div className="grid lg:grid-cols-2 gap-6 items-center">
 
           {/* Left Column: Content */}
           <div className="space-y-8 text-center lg:text-left">
@@ -62,14 +63,14 @@ export default function HomePageUI() {
               v1.0 is now live
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-7xl font-bold tracking-tight leading-tight">
               Connect with the <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400">
                 World Instantly
               </span>
             </h1>
 
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-md text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Experience the future of messaging. Secure, fast, and designed for global connection. Join thousands of users chatting in real-time.
             </p>
 
@@ -157,14 +158,12 @@ export default function HomePageUI() {
 
                 {/* Typing indicator */}
                 <div className="flex gap-3">
-
                   <div className="w-8 h-8 rounded-full bg-linear-to-r from-pink-500 to-rose-500 shrink-0" />
                   <div className="bg-slate-800 px-4 py-3 rounded-2xl rounded-tl-none flex gap-1">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-100"></span>
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-200"></span>
                   </div>
-
                 </div>
               </div>
             </div>

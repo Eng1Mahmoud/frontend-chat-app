@@ -2,7 +2,7 @@ import { Iuser } from "@/types/apiFetch";
 import { isUserOnline } from "@/utils/isUserOnline";
 import { generateAvatarColor } from "@/utils/generateAvatarColor";
 
-const getInitials = (username: string) => {
+export const getInitials = (username: string) => {
     return username?.slice(0, 2).toUpperCase();
 };
 
