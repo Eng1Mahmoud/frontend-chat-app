@@ -4,7 +4,6 @@ import { isUserOnline } from "@/utils/isUserOnline";
 import { VerifiedIcon, Menu } from "lucide-react";
 import { Avatar } from "./Avatar";
 import { Iuser } from "@/types/apiFetch";
-import { formatLastSeen } from "@/utils/formatLastSeen";
 import { useSidebar } from "@/components/ui/sidebar";
 
 interface ChatHeaderProps {
@@ -55,7 +54,7 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
                   : "text-gray-500 dark:text-gray-400"
                   }`}
               >
-                {isUserOnline(selectedUserForChat?._id as string, onlineUsers) ? "Online" : formatLastSeen(selectedUserForChat?.lastSeen as string)}
+                {isUserOnline(selectedUserForChat?._id as string, onlineUsers) ? "Online" : "Offline"}
               </span>
             )}
           </div>

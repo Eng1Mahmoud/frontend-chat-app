@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useChat } from "@/context/ChatProvider";
 export default function Home() {
   const { logedinUser } = useChat() || {};
-  console.log(logedinUser);
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-slate-900 flex items-center justify-center p-6 w-full">
       <div className="max-w-4xl mx-auto text-center">

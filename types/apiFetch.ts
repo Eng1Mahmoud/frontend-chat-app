@@ -19,7 +19,6 @@ export interface Iuser {
   email: string;
   isVerified: boolean;
   online: boolean;
-  lastSeen: string;
   createdAt: string;
   updatedAt: string;
 
@@ -30,6 +29,7 @@ export interface IMessage {
   sender: string;
   receiver: string;
   text: string;
+  status?: "sent" | "delivered" | "read";
   createdAt: string;
   updatedAt: string;
 }

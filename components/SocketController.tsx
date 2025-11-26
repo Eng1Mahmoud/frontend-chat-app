@@ -24,11 +24,15 @@ const SocketController = () => {
         };
 
         const onUserOffline = (userId: string) => {
+            // update online users
             setOnlineUsers((prev) => {
                 const newSet = new Set(prev);
                 newSet.delete(userId);
                 return newSet;
             });
+            // update user data to see last seen
+
+
         };
         socket.on("online_users", onOnlineUsers);
         socket.on("user_online", onUserOnline);
@@ -38,7 +42,7 @@ const SocketController = () => {
             socket.off("online_users", onOnlineUsers);
             socket.off("user_online", onUserOnline);
             socket.off("user_offline", onUserOffline);
-        socket.disconnect();
+            socket.disconnect();
         };
     }, [setOnlineUsers]);
 
