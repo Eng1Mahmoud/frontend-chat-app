@@ -7,8 +7,8 @@ import SendMessage from "./SendMessage";
 import { socket } from "@/socket";
 import { getMessagesAction } from "@/actions/messageActions";
 import { IMessage } from "@/types/apiFetch";
-import { ChevronDown, Check, CheckCheck } from "lucide-react";
-
+import { ChevronDown, Check, CheckCheck, UserRoundSearch } from "lucide-react";
+import FindFriends from "./chat-page/FindFriends";
 const ChatContent = () => {
   const { selectedUserForChat, logedinUser } = useChat() || {};
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -128,74 +128,75 @@ const ChatContent = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col bg-slate-950">
       {selectedUserForChat ? (
-        <div className="flex-1 flex flex-col h-full">
-          <ChatHeader isOtherUserTyping={isOtherUserTyping} />
-          <div
-            ref={messagesContainerRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-12"
-            onScroll={handleScroll}
+        <div className="flex-1 flex flex-col h-full relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-fixed ">
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-slate-950/90 z-0" />
 
-          >
-            <div className="w-full h-full bg-black opacity-20 fixed top-0 left-0 right-0 bottom-0 z-[-1] pointer-events-none" />
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`flex ${msg.sender === logedinUser?._id ? "justify-end" : "justify-start"}`}
-              >
+          <div className="relative z-10 flex-1 flex flex-col h-full">
+            <ChatHeader isOtherUserTyping={isOtherUserTyping} />
+
+            <div
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto p-4 space-y-6 relative px-4 md:px-12 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent "
+              onScroll={handleScroll}
+            >
+              {messages.map((msg, index) => (
                 <div
-                  className={`max-w-[70%] p-2 px-3 pb-1 transition-all duration-200 relative ${msg.sender === logedinUser?._id
-                    ? "bg-[#D9FDD3] dark:bg-[#056162] text-gray-900 dark:text-white shadow-sm rounded-lg rounded-tr-none"
-                    : "bg-gray-200 dark:bg-[#1F2C34] text-gray-900 dark:text-white shadow-sm rounded-lg rounded-tl-none"
-                    }`}
+                  key={index}
+                  className={`flex ${msg.sender === logedinUser?._id ? "justify-end" : "justify-start"}`}
                 >
-                  {/* Tail for sent messages - top right */}
-                  {msg.sender === logedinUser?._id && (
-                    <div className="absolute top-0 right-0 w-[12px] h-[12px] bg-[#D9FDD3] dark:bg-[#056162]" ></div>
-                  )}
-                  {/* Tail for received messages - top left */}
-                  {msg.sender !== logedinUser?._id && (
-                    <div className="absolute top-0 left-0 w-[12px] h-[12px] bg-gray-200 dark:bg-[#1F2C34]" ></div>
-                  )}
-                  <p className="text-sm leading-5 mb-1">{msg.text}</p>
-                  <div className="flex justify-end items-center gap-1">
-                    <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                      {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </span>
-                    {msg.sender === logedinUser?._id && (
-                      <span className="ml-1">
-                        {msg.status === "read" ? (
-                          <CheckCheck className="w-4 h-4 text-blue-500" />
-                        ) : msg.status === "delivered" ? (
-                          <CheckCheck className="w-4 h-4 text-gray-500" />
-                        ) : (
-                          <Check className="w-4 h-4 text-gray-500" />
-                        )}
+                  <div
+                    className={`max-w-[75%] md:max-w-[60%] p-4 rounded-4xl shadow-sm relative group transition-all duration-200 ${msg.sender === logedinUser?._id
+                      ? "bg-linear-to-br from-indigo-600 to-purple-600 text-white  rounded-tr-none"
+                      : "bg-slate-800/80 backdrop-blur-sm border border-white/5 text-gray-100  rounded-tl-none"
+                      }`}
+                  >
+                    <p className="text-[15px] leading-relaxed mb-1.5">{msg.text}</p>
+                    <div className={`flex items-center gap-1.5 text-[11px] ${msg.sender === logedinUser?._id ? "justify-end text-indigo-100/70" : "justify-start text-slate-400"
+                      }`}>
+                      <span>
+                        {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
-                    )}
+                      {msg.sender === logedinUser?._id && (
+                        <span className="ml-0.5">
+                          {msg.status === "read" ? (
+                            <CheckCheck className="w-3.5 h-3.5 text-blue-200" />
+                          ) : msg.status === "delivered" ? (
+                            <CheckCheck className="w-3.5 h-3.5 text-indigo-200/70" />
+                          ) : (
+                            <Check className="w-3.5 h-3.5 text-indigo-200/70" />
+                          )}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-          {showScrollToBottomButton && (
-            <ChevronDown
-              onClick={scrollToBottom}
-              className="absolute bottom-[120px] right-2 w-9 h-9 p-1.5  bg-white dark:bg-[#202C33] shadow-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#2A3942] transition-all duration-200 rounded-full cursor-pointer"
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+            {/* Sidebar toggle button - Find Friends */}
+            <FindFriends />
 
-            />
-          )}
-          <div className="mt-auto">
-            <SendMessage />
+            {showScrollToBottomButton && (
+              <button
+                onClick={scrollToBottom}
+                className="absolute bottom-24 right-6 w-10 h-10 bg-slate-800 hover:bg-slate-700 text-white shadow-lg shadow-black/20 rounded-full flex items-center justify-center transition-all duration-200 border border-white/10 z-20"
+              >
+                <ChevronDown className="w-5 h-5" />
+              </button>
+            )}
+
+            <div className="mt-auto relative z-20 bg-slate-950/80 backdrop-blur-md border-t border-white/5">
+              <SendMessage />
+            </div>
           </div>
         </div>
       ) : (
         <ChatWelcom />
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
 

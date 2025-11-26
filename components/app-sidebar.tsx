@@ -8,11 +8,11 @@ import { LogedinUserUI } from "@/components/LogedinUserUI"
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader >
+    <Sidebar className="bg-slate-950 border-r border-white/5 shadow-xl shadow-white/8">
+      <SidebarHeader className="bg-slate-950 ">
         <LogedinUserUI />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-slate-950">
         <UserList />
       </SidebarContent>
     </Sidebar>

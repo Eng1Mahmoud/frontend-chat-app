@@ -87,10 +87,10 @@ const SendMessage = () => {
   };
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#202C33] border-t border-gray-200 dark:border-gray-800 p-3 sticky bottom-0 z-10">
+    <div className="bg-transparent p-3 sticky bottom-0 z-10">
       <div className="relative max-w-4xl mx-auto">
         {/* Main input container */}
-        <div className="relative bg-white dark:bg-[#2A3942] rounded-lg shadow-sm">
+        <div className="relative bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-2xl shadow-sm transition-all focus-within:border-indigo-500/50 focus-within:bg-slate-800/80">
           <div className="flex items-end space-x-2 p-2">
             {/* Message input */}
             <div className="flex-1 relative">
@@ -99,10 +99,10 @@ const SendMessage = () => {
                 value={message}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
-                placeholder="Type a message"
-                className="w-full bg-transparent border-none outline-none resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm leading-5 max-h-[120px] overflow-y-auto"
+                placeholder="Type a message..."
+                className="w-full bg-transparent border-none outline-none resize-none text-white placeholder-slate-400 text-[15px] leading-relaxed max-h-[120px] overflow-y-auto px-2 py-2"
                 rows={1}
-                style={{ minHeight: "20px" }}
+                style={{ minHeight: "24px" }}
               />
             </div>
 
@@ -110,14 +110,14 @@ const SendMessage = () => {
             <button
               onClick={handleSendMessage}
               disabled={!message.trim()}
-              className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${message.trim()
-                ? "bg-[#25D366] hover:bg-[#20BD5A] text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+              className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${message.trim()
+                ? "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"
+                : "bg-slate-700/50 text-slate-500 cursor-not-allowed"
                 }`}
             >
               {message.trim() ? (
                 <svg
-                  className="w-5 h-5 transform rotate-45"
+                  className="w-5 h-5 transform rotate-45 -translate-x-px translate-y-px"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >

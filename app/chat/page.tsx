@@ -7,7 +7,7 @@ const ChatPage = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex-1 flex flex-col h-screen w-full">
+      <main className="flex-1 flex flex-col h-screen w-full bg-slate-950 text-white overflow-hidden">
         <SocketController />
         {/* Chat content goes here */}
         <ChatContent />
