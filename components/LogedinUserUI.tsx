@@ -13,7 +13,7 @@ export const LogedinUserUI = () => {
   const handleLogout = async () => {
     await logoutAction();
     changedLogedinUser?.(null);
-  }
+  };
 
   const isOnline = isUserOnline(logedinUser?._id as string, onlineUsers);
 
@@ -38,9 +38,7 @@ export const LogedinUserUI = () => {
         {/* User Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center space-x-2 mb-1">
-            <h3 className="font-semibold text-white truncate text-base">
-              {logedinUser?.username}
-            </h3>
+            <h3 className="font-semibold text-white truncate text-base">{logedinUser?.username}</h3>
             {logedinUser?.isVerified && (
               <div className="relative">
                 <VerifiedIcon className="w-4 h-4 text-indigo-400" />
@@ -49,14 +47,21 @@ export const LogedinUserUI = () => {
           </div>
 
           <div className="flex items-center space-x-2">
-            <div className={`flex items-center space-x-1.5 px-2 py-0.5 rounded-full ${isOnline
-              ? "bg-green-500/10 border border-green-500/20"
-              : "bg-slate-800/50 border border-slate-700/50"
-              }`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
-                }`} />
-              <span className={`text-xs font-medium ${isOnline ? "text-green-400" : "text-slate-500"
-                }`}>
+            <div
+              className={`flex items-center space-x-1.5 px-2 py-0.5 rounded-full ${
+                isOnline
+                  ? "bg-green-500/10 border border-green-500/20"
+                  : "bg-slate-800/50 border border-slate-700/50"
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
+                }`}
+              />
+              <span
+                className={`text-xs font-medium ${isOnline ? "text-green-400" : "text-slate-500"}`}
+              >
                 {isOnline ? "Online" : "Offline"}
               </span>
             </div>

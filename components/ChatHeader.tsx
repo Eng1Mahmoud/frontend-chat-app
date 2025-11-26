@@ -44,20 +44,38 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
               <div className="flex items-center space-x-2 px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
                 <span className="text-xs font-medium text-indigo-400">typing</span>
                 <div className="flex space-x-1">
-                  <span className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <span
+                    className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce"
+                    style={{ animationDelay: "0ms" }}
+                  />
+                  <span
+                    className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce"
+                    style={{ animationDelay: "150ms" }}
+                  />
+                  <span
+                    className="w-1 h-1 bg-indigo-400 rounded-full animate-bounce"
+                    style={{ animationDelay: "300ms" }}
+                  />
                 </div>
               </div>
             ) : (
-              <div className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-full ${isOnline
-                  ? "bg-green-500/10 border border-green-500/20"
-                  : "bg-slate-800/50 border border-slate-700/50"
-                }`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
-                  }`} />
-                <span className={`text-xs font-medium ${isOnline ? "text-green-400" : "text-slate-500"
-                  }`}>
+              <div
+                className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-full ${
+                  isOnline
+                    ? "bg-green-500/10 border border-green-500/20"
+                    : "bg-slate-800/50 border border-slate-700/50"
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
+                  }`}
+                />
+                <span
+                  className={`text-xs font-medium ${
+                    isOnline ? "text-green-400" : "text-slate-500"
+                  }`}
+                >
                   {isOnline ? "Online" : "Offline"}
                 </span>
               </div>

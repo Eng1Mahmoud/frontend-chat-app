@@ -1,10 +1,6 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarHeader,
-} from "@/components/ui/sidebar"
-import UserList from "./User-list/UserList"
-import { LogedinUserUI } from "@/components/LogedinUserUI"
+import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
+import UserList from "./User-list/UserList";
+import { LogedinUserUI } from "@/components/LogedinUserUI";
 
 export function AppSidebar() {
   return (
@@ -16,5 +12,5 @@ export function AppSidebar() {
         <UserList />
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

@@ -6,10 +6,7 @@ import { formDataToObject } from "@/utils/formDataToObject";
 import { loginSchema } from "@/validation/login";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-export async function loginAction(
-  _: FormState,
-  formData: FormData
-): Promise<FormState> {
+export async function loginAction(_: FormState, formData: FormData): Promise<FormState> {
   const values = formDataToObject(formData);
   const parsed = loginSchema.safeParse(values);
   if (!parsed.success) {

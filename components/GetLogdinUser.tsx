@@ -12,7 +12,7 @@ const GetLogdinUser = () => {
     // Only fetch if we don't have the user yet
     if (logedinUser) return;
 
-    // get logdin user 
+    // get logdin user
     const fetchUser = async () => {
       const user = await getUserAction();
       changedLogedinUser?.(user);

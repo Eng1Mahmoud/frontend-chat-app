@@ -1,86 +1,66 @@
 "use client";
-import Link from "next/link";
 import { useActionState } from "react";
-import { loginAction } from "@/actions/login"; 
-import type { FormState } from "@/types/actions"; 
+import { loginAction } from "@/actions/login";
+import type { FormState } from "@/types/actions";
+import { Mail, Lock } from "lucide-react";
+import Link from "next/link";
+import { AuthHeader } from "../ui/auth/AuthHeader";
+import { AuthAlert } from "../ui/auth/AuthAlert";
+import { AuthInput } from "../ui/auth/AuthInput";
+import { AuthButton } from "../ui/auth/AuthButton";
+import { AuthFooter } from "../ui/auth/AuthFooter";
+
 const initialState: FormState = { success: false };
+
 export default function LoginPageUI() {
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Welcome back
-      </h2>
-      <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">
-        Sign in to continue chatting.
-      </p>
 
-      <form action={formAction} className="mt-6 space-y-4">
-        {state.message && !state.success && (
-          <div className="rounded-md bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 px-3 py-2 text-sm">
-            {state.message}
-          </div>
+  return (
+    <div className="w-full max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <AuthHeader title="Welcome back" subtitle="Sign in to continue chatting." />
+
+      <form action={formAction} className="space-y-6">
+        {state.message && (
+          <AuthAlert message={state.message} type={state.success ? "success" : "error"} />
         )}
-        {state.success && (
-          <div className="rounded-md bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20 px-3 py-2 text-sm">
-            {state.message ?? "Signed in"}
-          </div>
-        )}
-        <div className="space-y-2">
-          <label htmlFor="email" className="text-sm text-zinc-700 dark:text-zinc-300">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            defaultValue={state.values?.email}
-            className="w-full rounded-lg border border-zinc-300/60 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 py-2 outline-none ring-0 focus:border-indigo-500 focus:outline-none"
-            placeholder="you@example.com"
-          />
-          {state.fieldErrors?.email && (
-            <p className="text-xs text-red-600 dark:text-red-400">{state.fieldErrors.email}</p>
-          )}
-        </div>
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="text-sm text-zinc-700 dark:text-zinc-300">
-              Password
-            </label>
-            <Link href="#" className="text-xs text-indigo-600 hover:text-indigo-700">
+
+        <AuthInput
+          id="email"
+          name="email"
+          type="email"
+          label="Email"
+          placeholder="you@example.com"
+          defaultValue={state.values?.email}
+          error={state.fieldErrors?.email}
+          icon={Mail}
+          autoComplete="email"
+        />
+
+        <AuthInput
+          id="password"
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="••••••••"
+          error={state.fieldErrors?.password}
+          icon={Lock}
+          autoComplete="current-password"
+          rightElement={
+            <Link
+              href="/forgot-password"
+              className="text-xs text-indigo-600 hover:text-indigo-500 transition-colors"
+            >
               Forgot?
             </Link>
-          </div>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-           
-            className="w-full rounded-lg border border-zinc-300/60 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 py-2 outline-none ring-0 focus:border-indigo-500 focus:outline-none"
-            placeholder="••••••••"
-          />
-          {state.fieldErrors?.password && (
-            <p className="text-xs text-red-600 dark:text-red-400">{state.fieldErrors.password}</p>
-          )}
-        </div>
-        <button
-          type="submit"
-          disabled={isPending}
-          className="inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-3 py-2 text-white shadow hover:bg-indigo-500 disabled:opacity-60"
-        >
-          {isPending ? "Signing in…" : "Sign in"}
-        </button>
+          }
+        />
 
+        <AuthButton isLoading={isPending} loadingText="Signing in...">
+          Sign in
+        </AuthButton>
       </form>
 
-      <p className="mt-6 text-center text-sm text-zinc-600 dark:text-zinc-300">
-        New here? {" "}
-        <Link href="/signup" className="text-indigo-600 hover:text-indigo-700">
-          Create an account
-        </Link>
-      </p>
+      <AuthFooter text="New here?" linkText="Create an account" linkHref="/signup" />
     </div>
   );
 }

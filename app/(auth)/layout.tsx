@@ -6,9 +6,7 @@ export const metadata: Metadata = {
   description: "Sign in to your account or create a new one.",
 };
 
-export default function AuthLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="min-h-dvh grid md:grid-cols-2 bg-zinc-50 dark:bg-zinc-950 w-full">
       {/* Left brand panel */}
@@ -56,9 +54,14 @@ export default function AuthLayout({
           </div>
           <p className="mt-6 text-center text-xs text-zinc-500">
             By continuing you agree to our
-            <Link href="#" className="mx-1 underline">Terms</Link>
+            <Link href="#" className="mx-1 underline">
+              Terms
+            </Link>
             and
-            <Link href="#" className="ml-1 underline">Privacy Policy</Link>.
+            <Link href="#" className="ml-1 underline">
+              Privacy Policy
+            </Link>
+            .
           </p>
         </div>
       </div>

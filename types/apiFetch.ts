@@ -10,7 +10,7 @@ export interface IFetch<I> {
   tags?: string[];
   params?: {
     [key: string]: string;
-  }
+  };
 }
 
 export interface Iuser {
@@ -21,7 +21,6 @@ export interface Iuser {
   online: boolean;
   createdAt: string;
   updatedAt: string;
-
 }
 
 export interface IMessage {

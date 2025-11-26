@@ -6,8 +6,12 @@ import { MessageSquareText, VerifiedIcon, Users, Sparkles } from "lucide-react";
 import { Avatar } from "../Avatar";
 
 const UserListUI = ({ users }: { users: Iuser[] }) => {
-  const { changedSelectedUserForChat, selectedUserForChat, onlineUsers = new Set<string>() } = useChat() || {};
-  const {  setOpenMobile } = useSidebar();
+  const {
+    changedSelectedUserForChat,
+    selectedUserForChat,
+    onlineUsers = new Set<string>(),
+  } = useChat() || {};
+  const { setOpenMobile } = useSidebar();
 
   const handleSelectUser = (user: Iuser) => {
     changedSelectedUserForChat?.(user);
@@ -36,13 +40,12 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
 
           <div className="flex-1">
             <div className="flex items-center space-x-2">
-              <h2 className="text-lg font-bold text-white">
-                Global Chat
-              </h2>
+              <h2 className="text-lg font-bold text-white">Global Chat</h2>
               <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Connect with <span className="font-semibold text-indigo-400">{users.length}+</span> people worldwide
+              Connect with <span className="font-semibold text-indigo-400">{users.length}+</span>{" "}
+              people worldwide
             </p>
           </div>
         </div>
@@ -57,10 +60,11 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
           return (
             <div
               key={user?._id}
-              className={`group relative flex items-center gap-3 px-4 py-3.5 hover:bg-white/5 transition-all duration-200 cursor-pointer border-l-4 ${isActive
+              className={`group relative flex items-center gap-3 px-4 py-3.5 hover:bg-white/5 transition-all duration-200 cursor-pointer border-l-4 ${
+                isActive
                   ? "bg-indigo-600/10 border-l-indigo-500 shadow-lg shadow-indigo-500/5"
                   : "border-l-transparent hover:border-l-indigo-400/30"
-                }`}
+              }`}
               onClick={() => handleSelectUser(user)}
             >
               {/* Hover gradient effect */}
@@ -80,8 +84,11 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
               <div className="flex-1 min-w-0 relative z-10">
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center space-x-1.5 flex-1 min-w-0">
-                    <h3 className={`font-semibold text-sm truncate ${isActive ? "text-white" : "text-slate-200 group-hover:text-white"
-                      }`}>
+                    <h3
+                      className={`font-semibold text-sm truncate ${
+                        isActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                      }`}
+                    >
                       {user.username}
                     </h3>
                     {user.isVerified && (
@@ -90,12 +97,14 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
                       </div>
                     )}
                   </div>
-
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <p className={`text-xs truncate ${isActive ? "text-slate-400" : "text-slate-500 group-hover:text-slate-400"
-                    }`}>
+                  <p
+                    className={`text-xs truncate ${
+                      isActive ? "text-slate-400" : "text-slate-500 group-hover:text-slate-400"
+                    }`}
+                  >
                     {user.email}
                   </p>
                 </div>

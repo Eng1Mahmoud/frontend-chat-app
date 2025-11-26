@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+::-webkit-scrollbar-track {
+  background: #232e33;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--chart-3) 0%, var(--ring) 100%);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

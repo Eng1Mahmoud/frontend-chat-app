@@ -1,6 +1,5 @@
-
-export type Role = "guest" | "user" ;
+export type Role = "guest" | "user";
 export interface RouteConfig {
-    path: string[];
-    roles: Role[];
+  path: string[];
+  roles: Role[];
 }

@@ -5,10 +5,7 @@ import { fetchApi } from "@/utils/apiFetch";
 import { formDataToObject } from "@/utils/formDataToObject";
 import { signupSchema } from "@/validation/signup";
 
-export async function signupAction(
-  _: FormState,
-  formData: FormData
-): Promise<FormState> {
+export async function signupAction(_: FormState, formData: FormData): Promise<FormState> {
   const values = formDataToObject(formData);
   const parsed = signupSchema.safeParse(values);
   if (!parsed.success) {

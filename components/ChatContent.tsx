@@ -18,7 +18,6 @@ const ChatContent = () => {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [showScrollToBottomButton, setShowScrollToBottomButton] = useState(false);
 
-
   useEffect(() => {
     if (!selectedUserForChat) return;
 
@@ -72,7 +71,7 @@ const ChatContent = () => {
       }
     };
 
-    const onMessagesReadUpdate = (data: { receiverId: string, status: string }) => {
+    const onMessagesReadUpdate = (data: { receiverId: string; status: string }) => {
       if (data.receiverId === selectedUserForChat?._id) {
         setMessages((prev) =>
           prev.map((msg) =>

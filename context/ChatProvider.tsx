@@ -17,9 +17,7 @@ interface ChatContextType {
 }
 const ChatProvider = ({ children }: ChatProviderProps) => {
   const [logedinUser, setLogedinUser] = useState<Iuser | null>(null);
-  const [selectedUserForChat, setSelectedUserForChat] = useState<Iuser | null>(
-    null
-  );
+  const [selectedUserForChat, setSelectedUserForChat] = useState<Iuser | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
   // change logedinUser and selectedChat types as per your requirement
   const changedLogedinUser = (user: Iuser | null) => {

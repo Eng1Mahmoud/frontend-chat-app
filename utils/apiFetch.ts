@@ -9,7 +9,7 @@ export async function fetchApi<R, I>({
 }: IFetch<I | undefined | null>): Promise<ApiResponse<R>> {
   try {
     const token = (await cookies()).get("token")?.value;
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     const apiUrl = `${baseUrl}${endpoint}`;
     if (params) {
       // params is an object key-value pairs
@@ -23,7 +23,6 @@ export async function fetchApi<R, I>({
         ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(body),
-
     });
     if (!res.ok) {
       try {
@@ -37,8 +36,7 @@ export async function fetchApi<R, I>({
         }
         return {
           success: false,
-          message:
-            errorData.message || `Error: ${res.status} ${res.statusText}`,
+          message: errorData.message || `Error: ${res.status} ${res.statusText}`,
         };
       } catch {
         return {
@@ -57,8 +55,7 @@ export async function fetchApi<R, I>({
   } catch (error) {
     return {
       success: false,
-      message:
-        error instanceof Error ? error.message : "An unexpected error occurred",
+      message: error instanceof Error ? error.message : "An unexpected error occurred",
     };
   }
 }

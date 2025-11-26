@@ -18,16 +18,12 @@ const eslintConfig = defineConfig([
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }
+        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
       ],
       // Fallback for plain JS files if any exist
-      "no-unused-vars": [
-        "warn",
-        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }
-      ]
-    }
-  }
-  
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
+    },
+  },
 ]);
 
 export default eslintConfig;
