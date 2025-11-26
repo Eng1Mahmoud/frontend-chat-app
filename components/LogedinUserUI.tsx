@@ -8,11 +8,19 @@ import { Avatar } from "./Avatar";
 import { Button } from "./ui/button";
 
 export const LogedinUserUI = () => {
-  const { logedinUser, changedLogedinUser, onlineUsers = new Set<string>() } = useChat() || {};
+  const {
+    logedinUser,
+    changedLogedinUser,
+    setOnlineUsers,
+    changedSelectedUserForChat,
+    onlineUsers = new Set<string>(),
+  } = useChat() || {};
 
   const handleLogout = async () => {
-    await logoutAction();
     changedLogedinUser?.(null);
+    setOnlineUsers?.(new Set<string>());
+    changedSelectedUserForChat?.(null);
+    await logoutAction();
   };
 
   const isOnline = isUserOnline(logedinUser?._id as string, onlineUsers);

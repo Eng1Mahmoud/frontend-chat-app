@@ -45,7 +45,6 @@ const ChatContent = () => {
       }
     };
     fetchMessages();
-
     const onReceiveMessage = (message: IMessage) => {
       const isFromSelectedUser = message.sender === selectedUserForChat?._id;
       const isToSelectedUser = message.receiver === selectedUserForChat?._id;

@@ -24,7 +24,6 @@ const UserAvatar = ({ user }: { user: Iuser }) => {
 };
 const MessagesList = ({ messages, messagesEndRef, isTyping }: MessagesListProps) => {
   const { logedinUser, selectedUserForChat } = useChat() || {};
-  console.log(messages);
   return (
     <>
       {messages.map((msg, index) => (
