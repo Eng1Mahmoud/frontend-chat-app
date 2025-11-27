@@ -14,7 +14,7 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
   const isOnline = isUserOnline(selectedUserForChat?._id as string, onlineUsers);
 
   return (
-    <div className="w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 px-5 py-4 sticky top-0 z-10 shadow-xl shadow-black/10">
+    <div className="w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 px-5 py-4 z-50 shadow-xl shadow-black/10">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-linear-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
 
@@ -60,21 +60,18 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
               </div>
             ) : (
               <div
-                className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-full ${
-                  isOnline
-                    ? "bg-green-500/10 border border-green-500/20"
-                    : "bg-slate-800/50 border border-slate-700/50"
-                }`}
+                className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-full ${isOnline
+                  ? "bg-green-500/10 border border-green-500/20"
+                  : "bg-slate-800/50 border border-slate-700/50"
+                  }`}
               >
                 <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
-                  }`}
+                  className={`w-1.5 h-1.5 rounded-full ${isOnline ? "bg-green-400 animate-pulse" : "bg-slate-500"
+                    }`}
                 />
                 <span
-                  className={`text-xs font-medium ${
-                    isOnline ? "text-green-400" : "text-slate-500"
-                  }`}
+                  className={`text-xs font-medium ${isOnline ? "text-green-400" : "text-slate-500"
+                    }`}
                 >
                   {isOnline ? "Online" : "Offline"}
                 </span>
