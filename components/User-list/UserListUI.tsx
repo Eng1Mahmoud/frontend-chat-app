@@ -10,6 +10,7 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
     changedSelectedUserForChat,
     selectedUserForChat,
     onlineUsers = new Set<string>(),
+    unreadCounts = {},
   } = useChat() || {};
   const { setOpenMobile } = useSidebar();
 
@@ -56,15 +57,15 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
         {users.map((user) => {
           const isActive = isActiveUser(user);
           const isOnline = onlineUsers.has(user._id);
+          const unreadCount = unreadCounts[user._id] || 0;
 
           return (
             <div
               key={user?._id}
-              className={`group relative flex items-center gap-3 px-4 py-3.5 hover:bg-white/5 transition-all duration-200 cursor-pointer border-l-4 ${
-                isActive
+              className={`group relative flex items-center gap-3 px-4 py-3.5 hover:bg-white/5 transition-all duration-200 cursor-pointer border-l-4 ${isActive
                   ? "bg-indigo-600/10 border-l-indigo-500 shadow-lg shadow-indigo-500/5"
                   : "border-l-transparent hover:border-l-indigo-400/30"
-              }`}
+                }`}
               onClick={() => handleSelectUser(user)}
             >
               {/* Hover gradient effect */}
@@ -85,9 +86,8 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center space-x-1.5 flex-1 min-w-0">
                     <h3
-                      className={`font-semibold text-sm truncate ${
-                        isActive ? "text-white" : "text-slate-200 group-hover:text-white"
-                      }`}
+                      className={`font-semibold text-sm truncate ${isActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                        }`}
                     >
                       {user.username}
                     </h3>
@@ -97,13 +97,22 @@ const UserListUI = ({ users }: { users: Iuser[] }) => {
                       </div>
                     )}
                   </div>
+                  {/* Unread count badge */}
+                  {unreadCount > 0 && (
+                    <div className="shrink-0 ml-2">
+                      <div className="min-w-[20px] h-5 px-1.5 bg-linear-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <span className="text-[10px] font-bold text-white">
+                          {unreadCount > 99 ? "99+" : unreadCount}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-between">
                   <p
-                    className={`text-xs truncate ${
-                      isActive ? "text-slate-400" : "text-slate-500 group-hover:text-slate-400"
-                    }`}
+                    className={`text-xs truncate ${isActive ? "text-slate-400" : "text-slate-500 group-hover:text-slate-400"
+                      }`}
                   >
                     {user.email}
                   </p>

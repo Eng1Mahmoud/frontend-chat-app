@@ -14,11 +14,14 @@ interface ChatContextType {
   changedSelectedUserForChat: (chat: Iuser | null) => void;
   onlineUsers: Set<string>;
   setOnlineUsers: React.Dispatch<React.SetStateAction<Set<string>>>;
+  unreadCounts: Record<string, number>;
+  setUnreadCounts: React.Dispatch<React.SetStateAction<Record<string, number>>>;
 }
 const ChatProvider = ({ children }: ChatProviderProps) => {
   const [logedinUser, setLogedinUser] = useState<Iuser | null>(null);
   const [selectedUserForChat, setSelectedUserForChat] = useState<Iuser | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
+  const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
   // change logedinUser and selectedChat types as per your requirement
   const changedLogedinUser = (user: Iuser | null) => {
     setLogedinUser(user);
@@ -36,6 +39,8 @@ const ChatProvider = ({ children }: ChatProviderProps) => {
         changedSelectedUserForChat,
         onlineUsers,
         setOnlineUsers,
+        unreadCounts,
+        setUnreadCounts,
       }}
     >
       {children}
