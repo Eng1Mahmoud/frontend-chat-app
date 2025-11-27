@@ -11,7 +11,7 @@ const SendMessage = () => {
   } = useSendMessage();
 
   return (
-    <div className="bg-transparent p-3 sticky bottom-0 z-10">
+    <div className="bg-transparent p-3 z-10">
       <div className="relative max-w-4xl mx-auto">
         {/* Main input container */}
         <div className="relative bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-2xl shadow-sm transition-all focus-within:border-indigo-500/50 focus-within:bg-slate-800/80">
@@ -35,8 +35,8 @@ const SendMessage = () => {
               onClick={handleSendMessage}
               disabled={!message.trim()}
               className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${message.trim()
-                  ? "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"
-                  : "bg-slate-700/50 text-slate-500 cursor-not-allowed"
+                ? "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"
+                : "bg-slate-700/50 text-slate-500 cursor-not-allowed"
                 }`}
             >
               {message.trim() ? (
