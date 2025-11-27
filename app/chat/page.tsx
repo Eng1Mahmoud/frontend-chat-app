@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import ChatContent from "@/components/ChatContent";
+import ChatContent from "@/components/chat-page/ChatContent";
 import SocketController from "@/components/SocketController";
 
 const ChatPage = () => {

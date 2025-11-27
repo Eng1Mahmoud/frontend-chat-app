@@ -5,11 +5,11 @@ import { resetPasswordAction } from "@/actions/resetPassword";
 import type { FormState } from "@/types/actions";
 import { useSearchParams } from "next/navigation";
 import { Lock, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
-import { AuthHeader } from "../ui/auth/AuthHeader";
-import { AuthAlert } from "../ui/auth/AuthAlert";
-import { AuthInput } from "../ui/auth/AuthInput";
-import { AuthButton } from "../ui/auth/AuthButton";
-import { AuthFooter } from "../ui/auth/AuthFooter";
+import { AuthHeader } from "../Auth-UI/AuthHeader";
+import { AuthAlert } from "../Auth-UI/AuthAlert";
+import { AuthInput } from "../Auth-UI/AuthInput";
+import { AuthButton } from "../Auth-UI/AuthButton";
+import { AuthFooter } from "../Auth-UI/AuthFooter";
 
 const initialState: FormState = { success: false };
 

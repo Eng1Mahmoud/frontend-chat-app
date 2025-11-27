@@ -4,11 +4,11 @@ import { loginAction } from "@/actions/login";
 import type { FormState } from "@/types/actions";
 import { Mail, Lock } from "lucide-react";
 import Link from "next/link";
-import { AuthHeader } from "../ui/auth/AuthHeader";
-import { AuthAlert } from "../ui/auth/AuthAlert";
-import { AuthInput } from "../ui/auth/AuthInput";
-import { AuthButton } from "../ui/auth/AuthButton";
-import { AuthFooter } from "../ui/auth/AuthFooter";
+import { AuthHeader } from "../Auth-UI/AuthHeader";
+import { AuthAlert } from "../Auth-UI/AuthAlert";
+import { AuthInput } from "../Auth-UI/AuthInput";
+import { AuthButton } from "../Auth-UI/AuthButton";
+import { AuthFooter } from "../Auth-UI/AuthFooter";
 
 const initialState: FormState = { success: false };
 

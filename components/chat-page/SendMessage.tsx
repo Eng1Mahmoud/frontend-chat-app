@@ -67,7 +67,8 @@ const SendMessage = () => {
         text: message,
       });
       setMessage("");
-
+      // Focus on textarea after sending message
+      textareaRef.current?.focus();
       // Stop typing when message is sent
       if (isTyping) {
         setIsTyping(false);

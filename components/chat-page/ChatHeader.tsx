@@ -2,7 +2,7 @@
 import { useChat } from "@/context/ChatProvider";
 import { isUserOnline } from "@/utils/isUserOnline";
 import { VerifiedIcon } from "lucide-react";
-import { Avatar } from "./Avatar";
+import { Avatar } from "@/components/Avatar";
 import { Iuser } from "@/types/apiFetch";
 
 interface ChatHeaderProps {
@@ -14,7 +14,7 @@ const ChatHeader = ({ isOtherUserTyping }: ChatHeaderProps) => {
   const isOnline = isUserOnline(selectedUserForChat?._id as string, onlineUsers);
 
   return (
-    <div className="relative w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 px-5 py-4 sticky top-0 z-10 shadow-xl shadow-black/10">
+    <div className="w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 px-5 py-4 sticky top-0 z-10 shadow-xl shadow-black/10">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-linear-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
 

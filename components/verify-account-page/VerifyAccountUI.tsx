@@ -3,9 +3,9 @@ import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { verifyEmailAction } from "@/actions/verifyEmail";
-import { AuthHeader } from "../ui/auth/AuthHeader";
-import { AuthAlert } from "../ui/auth/AuthAlert";
-import { AuthButton } from "../ui/auth/AuthButton";
+import { AuthHeader } from "../Auth-UI/AuthHeader";
+import { AuthAlert } from "../Auth-UI/AuthAlert";
+import { AuthButton } from "../Auth-UI/AuthButton";
 
 type Status = "idle" | "verifying" | "success" | "error";
 

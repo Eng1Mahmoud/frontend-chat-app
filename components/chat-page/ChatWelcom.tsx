@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "./ui/button";
-import { useSidebar } from "./ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { useSidebar } from "@/components/ui/sidebar";
 import { MessageSquareText, Users } from "lucide-react";
 
 const ChatWelcom = () => {

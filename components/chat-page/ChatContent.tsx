@@ -1,11 +1,11 @@
 "use client";
-import ChatWelcom from "./ChatWelcom";
-import ChatHeader from "./ChatHeader";
+import ChatWelcom from "@/components/chat-page/ChatWelcom";
+import ChatHeader from "@/components/chat-page/ChatHeader";
 import { useChat } from "@/context/ChatProvider";
-import SendMessage from "./SendMessage";
+import SendMessage from "@/components/chat-page/SendMessage";
 import { ChevronDown } from "lucide-react";
-import FindFriends from "./chat-page/FindFriends";
-import MessagesList from "./chat-page/MessagesList";
+import FindFriends from "@/components/chat-page/FindFriends";
+import MessagesList from "@/components/chat-page/MessagesList";
 import { useChatMessages } from "@/hooks/useChatMessages";
 import { useChatScroll } from "@/hooks/useChatScroll";
 
