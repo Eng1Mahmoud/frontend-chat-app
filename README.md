@@ -143,9 +143,29 @@ The application uses Next.js App Router:
 The socket connection is initialized in `socket.ts` as a singleton.
 
 - **Connection**: Auto-connects when a user is authenticated (token present).
-- **Events**:
-  - Listens for: `receive_message`, `user_online`, `user_offline`, `user_typing`, `user_stopped_typing`, `unread_count_update`, `unread_counts`.
-  - Emits: `send_message`, `user_typing`, `user_stopped_typing`, `mark_as_read`.
+
+### Client -> Server (Emitted)
+
+| Event                 | Payload                | Description                          |
+| :-------------------- | :--------------------- | :----------------------------------- |
+| `send_message`        | `{ receiverId, text }` | Send a new message.                  |
+| `user_typing`         | `{ receiverId }`       | Notify that user is typing.          |
+| `user_stopped_typing` | `{ receiverId }`       | Notify that user stopped typing.     |
+| `mark_as_read`        | `{ senderId }`         | Mark messages from a sender as read. |
+
+### Server -> Client (Listened)
+
+| Event                  | Payload                          | Description                                               |
+| :--------------------- | :------------------------------- | :-------------------------------------------------------- |
+| `user_online`          | `userId`                         | Receive notification when a user comes online.            |
+| `online_users`         | `[userIds]`                      | Receive list of currently online users upon connection.   |
+| `unread_counts`        | `{ userId: count }`              | Receive initial unread message counts upon connection.    |
+| `receive_message`      | `Message` object                 | Receive a new message.                                    |
+| `user_typing`          | `{ userId }`                     | Receive notification that a user is typing.               |
+| `user_stopped_typing`  | `{ userId }`                     | Receive notification that a user stopped typing.          |
+| `messages_read_update` | `{ receiverId, status: 'read' }` | Receive notification that sent messages were read.        |
+| `unread_count_update`  | `{ userId, count }`              | Receive update for unread message count.                  |
+| `user_offline`         | `userId`                         | Receive notification when a user goes offline.            |
 
 ## Utilities
 
