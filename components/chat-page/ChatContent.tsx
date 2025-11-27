@@ -21,7 +21,7 @@ const ChatContent = () => {
   } = useChatScroll(messages, selectedUserForChat);
 
   return (
-    <div className="h-screen flex flex-col bg-slate-950 overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] flex flex-col bg-slate-950 overflow-hidden">
       {selectedUserForChat ? (
         <div className="flex-1 flex flex-col h-full relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-fixed ">
           {/* Dark Overlay */}
