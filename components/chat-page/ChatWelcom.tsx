@@ -7,7 +7,7 @@ const ChatWelcom = () => {
   const { setOpenMobile } = useSidebar() || {};
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen relative overflow-hidden bg-slate-950 text-white w-full">
+    <div className="flex flex-col items-center justify-center h-full relative overflow-hidden bg-slate-950 text-white w-full">
       {/*  Background Gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/20 rounded-full blur-[140px] animate-pulse" />
