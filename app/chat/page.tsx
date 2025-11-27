@@ -5,8 +5,8 @@ import SocketController from "@/components/SocketController";
 
 const ChatPage = () => {
   return (
-    <div className="h-screen w-full overflow-hidden flex">
-      <SidebarProvider defaultOpen={true} className="w-full h-full flex">
+    <div className="h-dvh w-full overflow-hidden flex">
+      <SidebarProvider defaultOpen={true} className="w-full h-full flex overflow-hidden">
         <AppSidebar />
         <main className="flex-1 flex flex-col h-full w-full bg-slate-950 text-white overflow-hidden">
           <SocketController />
