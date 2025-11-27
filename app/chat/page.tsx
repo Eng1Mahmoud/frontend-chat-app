@@ -5,15 +5,15 @@ import SocketController from "@/components/SocketController";
 
 const ChatPage = () => {
   return (
-    <div className="overflow-y-hidden">
-    <SidebarProvider>
-      <AppSidebar />
-      <main className="flex-1 flex flex-col h-screen w-full bg-slate-950 text-white">
-        <SocketController />
-        {/* Chat content goes here */}
-        <ChatContent />
-      </main>
-    </SidebarProvider>
+    <div className="h-screen w-full overflow-hidden flex">
+      <SidebarProvider defaultOpen={true} className="w-full h-full flex">
+        <AppSidebar />
+        <main className="flex-1 flex flex-col h-full w-full bg-slate-950 text-white overflow-hidden">
+          <SocketController />
+          {/* Chat content goes here */}
+          <ChatContent />
+        </main>
+      </SidebarProvider>
     </div>
   );
 };

@@ -21,18 +21,18 @@ const ChatContent = () => {
   } = useChatScroll(messages, selectedUserForChat);
 
   return (
-    <div className="h-screen flex flex-col bg-slate-950 overflow-hidden">
+    <div className="h-full flex flex-col bg-slate-950 overflow-hidden">
       {selectedUserForChat ? (
-        <div className="flex-1 flex flex-col h-full relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-fixed ">
+        <div className="flex-1 flex flex-col h-full min-h-0 relative bg-[url('/images/chat-bg.png')] bg-cover bg-center bg-fixed ">
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-slate-950/90 z-0" />
 
-          <div className="relative z-10 flex-1 flex flex-col h-full">
+          <div className="relative z-10 flex-1 flex flex-col h-full min-h-0">
             <ChatHeader isOtherUserTyping={isOtherUserTyping} />
 
             <div
               ref={messagesContainerRef}
-              className="flex-1 overflow-y-auto p-4 space-y-6 relative px-4 md:px-12 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent "
+              className="flex-1 overflow-y-auto p-4 pt-24 space-y-6 relative px-4 md:px-12 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent "
               onScroll={handleScroll}
             >
               <MessagesList
@@ -53,7 +53,7 @@ const ChatContent = () => {
               </button>
             )}
 
-            <div className="mt-auto relative z-20 bg-slate-950/80 backdrop-blur-md border-t border-white/5">
+            <div className="mt-auto shrink-0 relative z-20 bg-slate-950/80 backdrop-blur-md border-t border-white/5">
               <SendMessage />
             </div>
           </div>
