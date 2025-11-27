@@ -18,10 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={` antialiased `}>
         <ChatProvider>
-          <SidebarProvider>
             {children}
             <GetLogdinUser />
-          </SidebarProvider>
         </ChatProvider>
       </body>
     </html>
