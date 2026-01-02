@@ -1,8 +1,7 @@
-import { CheckCircle2, Zap } from "lucide-react";
-import Link from "next/link";
-import { useChat } from "@/context/ChatProvider";
+import { CheckCircle2 } from "lucide-react";
+import HeroCTA from "./HeroCTA";
+
 const LeftColumn = () => {
-  const { logedinUser } = useChat() || {};
   return (
     <div className="space-y-8 text-center lg:text-left">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium animate-fade-in-up">
@@ -25,23 +24,7 @@ const LeftColumn = () => {
         thousands of users chatting in real-time.
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-        <Link
-          href={logedinUser ? "/chat" : "/signup"}
-          className="px-8 py-4 bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-2xl font-semibold shadow-lg shadow-indigo-500/25 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
-        >
-          Start Chatting Now
-          <Zap className="w-5 h-5 fill-current" />
-        </Link>
-        {!logedinUser && (
-          <Link
-            href="/login"
-            className="px-8 py-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white rounded-2xl font-semibold transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
-          >
-            Log In
-          </Link>
-        )}
-      </div>
+      <HeroCTA />
 
       <div className="pt-8 flex items-center justify-center lg:justify-start gap-6 text-gray-500 text-sm">
         <div className="flex items-center gap-2">

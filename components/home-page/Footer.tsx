@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="relative z-10 py-8 text-center text-sm text-gray-500 border-t border-white/5 bg-slate-950/50 backdrop-blur-sm">
+    <footer className="relative z-10 py-8 text-center text-sm text-gray-300 border-t border-white/5 bg-slate-950/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6">
         <p>
           © {new Date().getFullYear()}{" "}

@@ -10,6 +10,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
+  "browserslist": [
+    "chrome >= 87",
+    "firefox >= 78",
+    "edge >= 88",
+    "safari >= 14"
+  ],
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-separator": "^1.1.8",
