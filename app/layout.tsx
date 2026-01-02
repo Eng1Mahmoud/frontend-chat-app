@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] }); // only latin characters
-import ChatProvider from "@/context/ChatProvider";
-import GetLogdinUser from "@/components/GetLogdinUser";
 
 export const metadata: Metadata = {
   title: "World Chat",
@@ -18,10 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased `}>
-        <ChatProvider>
-          {children}
-          <GetLogdinUser />
-        </ChatProvider>
+        {children}
       </body>
     </html>
   );

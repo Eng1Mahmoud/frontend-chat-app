@@ -1,7 +1,8 @@
 import { CheckCircle2 } from "lucide-react";
 import HeroCTA from "./HeroCTA";
+import { Iuser } from "@/types/apiFetch";
 
-const LeftColumn = () => {
+const LeftColumn = ({ user }: { user: Iuser | null }) => {
   return (
     <div className="space-y-8 text-center lg:text-left">
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium animate-fade-in-up">
@@ -24,20 +25,20 @@ const LeftColumn = () => {
         thousands of users chatting in real-time.
       </p>
 
-      <HeroCTA />
+      <HeroCTA user={user} />
 
       <div className="pt-8 flex items-center justify-center lg:justify-start gap-6 text-gray-500 text-sm">
         <div className="flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-indigo-400" />
-          <span>Free Forever</span>
+          <span className="text-white">Free Forever</span>
         </div>
         <div className="flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-indigo-400" />
-          <span>No Credit Card</span>
+          <span className="text-white">No Credit Card</span>
         </div>
         <div className="flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-indigo-400" />
-          <span>Secure Encryption</span>
+          <span className="text-white">Secure Encryption</span>
         </div>
       </div>
     </div>
