@@ -5,6 +5,7 @@ import { createContext, useContext, useState } from "react";
 export const ChatContext = createContext<ChatContextType | null>(null);
 interface ChatProviderProps {
   children: React.ReactNode;
+  initialUser?: Iuser | null;
 }
 
 interface ChatContextType {
@@ -17,8 +18,8 @@ interface ChatContextType {
   unreadCounts: Record<string, number>;
   setUnreadCounts: React.Dispatch<React.SetStateAction<Record<string, number>>>;
 }
-const ChatProvider = ({ children }: ChatProviderProps) => {
-  const [logedinUser, setLogedinUser] = useState<Iuser | null>(null);
+const ChatProvider = ({ children, initialUser = null }: ChatProviderProps) => {
+  const [logedinUser, setLogedinUser] = useState<Iuser | null>(initialUser);
   const [selectedUserForChat, setSelectedUserForChat] = useState<Iuser | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});

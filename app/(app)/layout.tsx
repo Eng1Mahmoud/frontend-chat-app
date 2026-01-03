@@ -1,15 +1,16 @@
 import ChatProvider from "@/context/ChatProvider";
-import GetLogdinUser from "@/components/GetLogdinUser";
+import { getUserAction } from "@/actions/getUserAction";
 
-export default function AppLayout({
+export default async function AppLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const user = await getUserAction();
+
     return (
-        <ChatProvider>
+        <ChatProvider initialUser={user}>
             {children}
-            <GetLogdinUser />
         </ChatProvider>
     );
 }
