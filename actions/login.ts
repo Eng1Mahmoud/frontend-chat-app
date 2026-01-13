@@ -2,12 +2,12 @@
 import type { FormState } from "@/types/actions";
 import { loginResponse } from "@/types/apiRespons";
 import { fetchApi } from "@/utils/apiFetch";
-import { formDataToObject } from "@/utils/formDataToObject";
+
 import { loginSchema } from "@/validation/login";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 export async function loginAction(_: FormState, formData: FormData): Promise<FormState> {
-  const values = formDataToObject(formData);
+  const values = Object.fromEntries(formData.entries()) as Record<string, string>;
   const parsed = loginSchema.safeParse(values);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};

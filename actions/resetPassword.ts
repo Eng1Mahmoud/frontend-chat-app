@@ -1,12 +1,12 @@
 "use server";
 import type { FormState } from "@/types/actions";
 import { fetchApi } from "@/utils/apiFetch";
-import { formDataToObject } from "@/utils/formDataToObject";
+
 import { resetPasswordSchema } from "@/validation/resetPassword";
 import { redirect } from "next/navigation";
 
 export async function resetPasswordAction(_: FormState, formData: FormData): Promise<FormState> {
-  const values = formDataToObject(formData);
+  const values = Object.fromEntries(formData.entries()) as Record<string, string>;
   const parsed = resetPasswordSchema.safeParse(values);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};

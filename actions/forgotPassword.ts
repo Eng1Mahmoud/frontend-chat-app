@@ -1,11 +1,11 @@
 "use server";
 import type { FormState } from "@/types/actions";
 import { fetchApi } from "@/utils/apiFetch";
-import { formDataToObject } from "@/utils/formDataToObject";
+
 import { forgotPasswordSchema } from "@/validation/forgotPassword";
 
 export async function forgotPasswordAction(_: FormState, formData: FormData): Promise<FormState> {
-  const values = formDataToObject(formData);
+  const values = Object.fromEntries(formData.entries()) as Record<string, string>;
   const parsed = forgotPasswordSchema.safeParse(values);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};

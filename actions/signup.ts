@@ -2,11 +2,11 @@
 import type { FormState } from "@/types/actions";
 import { apiRespons } from "@/types/apiRespons";
 import { fetchApi } from "@/utils/apiFetch";
-import { formDataToObject } from "@/utils/formDataToObject";
+
 import { signupSchema } from "@/validation/signup";
 
 export async function signupAction(_: FormState, formData: FormData): Promise<FormState> {
-  const values = formDataToObject(formData);
+  const values = Object.fromEntries(formData.entries()) as Record<string, string>;
   const parsed = signupSchema.safeParse(values);
   if (!parsed.success) {
     const fieldErrors: Record<string, string> = {};
