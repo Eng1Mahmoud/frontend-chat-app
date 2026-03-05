@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, /* Cairo */ } from "next/font/google";
 import "./globals.css";
-const inter = Inter({ subsets: ["latin"] }); // only latin characters
+const inter = Inter(
+  {
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-inter",
+
+  }
+); // only latin characters
+/* const cairo = Cairo(
+  {
+    subsets: ["arabic"],
+    weight: ["400"],
+    variable: "--font-cairo",
+
+  }
+); */ // only arabic characters
 
 export const metadata: Metadata = {
   title: "World Chat",
@@ -14,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased `}>
+    <html lang="en" className={`${inter.variable}  antialiased `}>
+      <body>
         {children}
       </body>
     </html>
